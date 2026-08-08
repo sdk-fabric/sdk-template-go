@@ -1,0 +1,8 @@
+{
+  "type": "client-go",
+  "require": {
+    "{{typehub_user}}/{{typehub_name}}": {
+      "target": "./sdk"
+    }
+  }
+}
