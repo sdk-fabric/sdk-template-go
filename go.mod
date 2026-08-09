@@ -1,4 +1,4 @@
-module github.com/sdk-fabric/{{name}}-go
+module github.com/{{github_user}}/{{github_repository}}
 
 go 1.18
 
