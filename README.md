@@ -16,5 +16,5 @@ import (
 
 var client, _ = sdk.Build("[access_token]");
 
-// @TODO use the client
+{{usage}}
 ```
