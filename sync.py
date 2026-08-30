@@ -86,10 +86,6 @@ def main() -> None:
     lock_file: Path = args.lock_file
 
     # 1. Validation
-    if not config_file.is_file():
-        print(f"::error file={config_file}::Config file '{config_file}' not found.")
-        sys.exit(1)
-
     if not template_dir.is_dir():
         print(f"::error::Template directory '{template_dir}' not found.")
         sys.exit(1)
