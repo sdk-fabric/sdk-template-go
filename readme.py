@@ -7,12 +7,24 @@ import re
 from pathlib import Path
 
 
+def to_camel_case(name: str) -> str:
+    """Returns camelCase string as-is (e.g. deleteRow -> deleteRow)."""
+    return name
+
+
 def to_pascal_case(name: str) -> str:
+    """Converts the first character to uppercase (ucfirst) (e.g. deleteRow -> DeleteRow)."""
+    if not name:
+        return ""
+    return name[0].upper() + name[1:]
+
+
+def to_snake_case(name: str) -> str:
+    """Converts camelCase/PascalCase to snake_case (e.g. deleteRow -> delete_row)."""
     if not name:
         return ""
     s = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
-    parts = [p for p in re.split(r"[._-]+", s) if p]
-    return "".join(p.capitalize() for p in parts)
+    return s.lower().strip("_")
 
 
 def map_schema_to_type(schema: dict) -> str:
@@ -67,10 +79,10 @@ def generate_usage(lock_file_path: Path) -> str:
             tag_accessor = f"client.{tag_chain}"
             method_raw = parts[-1]
         else:
-            method_raw = op_id
+            method_raw = to_pascal_case(op_id)
             tag_accessor = "client"
 
-        method_name = to_pascal_case(method_raw)
+        method_name = method_raw
         raw_arguments = op.get("arguments", {})
         call_args = []
 
